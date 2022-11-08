@@ -12,10 +12,13 @@ const app = createApp({
     },
     methods: {
         callApi(){
+            const myList = [];
             for(let i = 0; i < 10; i++){
                 axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then((res)=>{
-                    // console.log(res.data.response)
-                    this.mailingList.push(res.data.response)
+                    myList.push(res.data.response);
+                    if(myList.length >= 9){
+                    this.mailingList = [...myList];
+                    }
                 })
             }
         }
